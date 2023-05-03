@@ -1,0 +1,7 @@
+zennit-crp==0.6.0
+torch==1.13.1
+torchvision==0.14.1
+albumentations==1.3.0
+opencv-python==4.7.0.72
+segmentation_models_pytorch==0.3.2
+addict
