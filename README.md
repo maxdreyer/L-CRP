@@ -46,7 +46,7 @@ Please feel free to cite our work, if used in your research:
       <th>Object Detection</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="text-align: center">
     <tr>
       <td>UNet (CityScapes)</td>
       <td>YOLOv5m (COCO 2017)</td>
@@ -125,7 +125,7 @@ In order to render an L-CRP explanation, we need to first perform a glocal prepr
 The glocal preprocessing step is performed via the `run_glocal_analysis.sh` script in the `scripts` directory.
 
 Note, that this step can be skipped if you want to render explanations for the provided checkpoints. 
-All L-CRP preprocessing files can be downloaded [**here**](https://datacloud.hhi.fraunhofer.de/s/7AR8X979xED3sYF) and should be saved in the `outputs/crp` directory.
+All L-CRP preprocessing files can be downloaded [**here**](https://datacloud.hhi.fraunhofer.de/s/jXr9C4nc3QzdgDK) and should be saved in the `outputs/crp` directory.
 
 After the glocal preprocessing step, we can render L-CRP explanations via the `experiments/plot_crp_explanation.py` script.
 
