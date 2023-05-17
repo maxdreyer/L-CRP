@@ -1,9 +1,10 @@
 import torch
 from zennit.composites import SpecialFirstLayerMapComposite, LAYER_MAP_BASE, LayerMapComposite
 from zennit.layer import Sum
-from zennit.rules import ZPlus, Epsilon, Flat, Pass, Norm, ReLUGuidedBackprop
+from zennit.rules import ZPlus, Epsilon, Flat, Pass, ReLUGuidedBackprop
 from zennit.types import Convolution, Linear, Activation, AvgPool, BatchNorm
 
+from models.SSD.ssd.layers import L2Norm
 from models.yolov5 import Sigmoid_
 from utils.zennit_rules import GammaResNet
 
@@ -18,6 +19,7 @@ class EpsilonPlusFlat(SpecialFirstLayerMapComposite):
             (Convolution, ZPlus()),
             (torch.nn.Linear, Epsilon()),
             (BatchNorm, Epsilon()),
+            (L2Norm, Pass()),   # For SSD architecture
             (Sigmoid_, Pass())
         ]
         first_map = [
@@ -36,6 +38,7 @@ class EpsilonGammaFlat(SpecialFirstLayerMapComposite):
             (Convolution, GammaResNet()),
             (torch.nn.Linear, Epsilon()),
             (BatchNorm, Epsilon()),
+            (L2Norm, Pass()),  # For SSD architecture
             (Sigmoid_, Pass())
         ]
         first_map = [
@@ -54,6 +57,7 @@ class EpsilonFlat(SpecialFirstLayerMapComposite):
             (Convolution, Epsilon()),
             (torch.nn.Linear, Epsilon()),
             (BatchNorm, Epsilon()),
+            (L2Norm, Pass()),  # For SSD architecture
             (Sigmoid_, Pass())
         ]
         first_map = [
@@ -72,6 +76,7 @@ class EpsilonPlus(SpecialFirstLayerMapComposite):
             (Convolution, ZPlus()),
             (torch.nn.Linear, Epsilon()),
             (BatchNorm, Epsilon()),
+            (L2Norm, Pass()),  # For SSD architecture
             (Sigmoid_, Pass())
         ]
         first_map = [
@@ -91,6 +96,7 @@ class AllFlatComposite(LayerMapComposite):
             (Activation, Pass()),
             (Sum, Flat()),
             (Sigmoid_, Pass()),
+            (L2Norm, Pass()),  # For SSD architecture
             (BatchNorm, Pass()),
         ]
 
@@ -103,6 +109,7 @@ class GradientComposite(LayerMapComposite):
     def __init__(self, canonizers=None):
         layer_map = [
             (Sigmoid_, Pass()),
+            (L2Norm, Pass()),  # For SSD architecture
         ]
         super().__init__(layer_map, canonizers=canonizers)
 
@@ -115,5 +122,6 @@ class GuidedBackpropComposite(LayerMapComposite):
         layer_map = [
             (torch.nn.ReLU, ReLUGuidedBackprop()),
             (Sigmoid_, Pass()),
+            (L2Norm, Pass()),  # For SSD architecture
         ]
         super().__init__(layer_map, canonizers=canonizers)

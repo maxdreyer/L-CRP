@@ -9,6 +9,7 @@ COMPOSITES = {
     # object detectors
     "yolov5": EpsilonPlusFlat,
     "yolov6": EpsilonGammaFlat,
+    "ssd": EpsilonPlusFlat,
     # segmentation models
     "unet": EpsilonPlusFlat,
     "deeplabv3plus": EpsilonPlusFlat,
@@ -18,6 +19,7 @@ CANONIZERS = {
     # object detectors
     "yolov5": YoloV5V6Canonizer,
     "yolov6": YoloV5V6Canonizer,
+    "ssd": ResNetCanonizer,
     # segmentation models
     "unet": ResNetCanonizer,
     "deeplabv3plus": DeepLabV3PlusCanonizer,
@@ -27,6 +29,7 @@ ATTRIBUTORS = {
     # object detectors
     "yolov5": CondAttributionLocalization,
     "yolov6": CondAttributionLocalization,
+    "ssd": CondAttributionLocalization,
     # segmentation models
     "unet": CondAttributionSegmentation,
     "deeplabv3plus": CondAttributionSegmentation,
@@ -36,6 +39,7 @@ VISUALIZATIONS = {
     # object detectors
     "yolov5": FeatureVisualizationLocalization,
     "yolov6": FeatureVisualizationLocalization,
+    "ssd": FeatureVisualizationLocalization,
     # segmentation models
     "unet": FeatureVisualizationSegmentation,
     "deeplabv3plus": FeatureVisualizationSegmentation,
