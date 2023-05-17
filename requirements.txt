@@ -5,3 +5,5 @@ albumentations==1.3.0
 opencv-python==4.7.0.72
 segmentation_models_pytorch==0.3.2
 addict
+pycocotools==2.0.6
+yacs

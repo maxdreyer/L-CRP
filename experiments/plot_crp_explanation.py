@@ -42,9 +42,15 @@ EXAMPLES = [{
         "sample_id": 140,
         "class_id": 0,
         "layer": "model.8.cv3.conv"},
+    {
+        "model_name": "ssd",
+        "dataset_name": "coco",
+        "sample_id": 195,
+        "class_id": 1,
+        "layer": "model.backbone.vgg.28"},
 ]
 
-EXAMPLE = 3
+EXAMPLE = -1
 
 @click.command()
 @click.option("--model_name", default=EXAMPLES[EXAMPLE]["model_name"])
@@ -92,7 +98,7 @@ def main(model_name, dataset_name, sample_id, class_id, layer, prediction_num, m
         axs[0][0].contour(mask, colors="black", linewidths=[2])
 
 
-    elif "yolo" in model_name:
+    elif "yolo" in model_name or "ssd" in model_name:
         attribution.take_prediction = prediction_num
         attr = attribution(img.requires_grad_(), condition, composite, record_layer=[layer], init_rel=1)
         heatmap = np.array(zimage.imgify(attr.heatmap.detach().cpu(), symmetric=True))
@@ -100,13 +106,15 @@ def main(model_name, dataset_name, sample_id, class_id, layer, prediction_num, m
 
         predicted_boxes = model.predict_with_boxes(img)[1][0]
         predicted_classes = attr.prediction.argmax(dim=2)[0]
+        print("Predicted classes: ", torch.unique(predicted_classes).detach().cpu().numpy())
         sorted = attr.prediction.max(dim=2)[0].argsort(descending=True)[0]
         predicted_classes = predicted_classes[sorted]
         predicted_boxes = predicted_boxes[sorted]
         predicted_boxes = [b for b, c in zip(predicted_boxes, predicted_classes) if c == class_id][prediction_num]
         boxes = torch.tensor(predicted_boxes, dtype=torch.float)[None]
         colors = ["#ffcc00" for _ in boxes]
-        result = draw_bounding_boxes((img[0] * 255).type(torch.uint8), boxes, colors=colors, width=8)
+        result = draw_bounding_boxes((dataset.reverse_normalization(img[0])).type(torch.uint8),
+                                     boxes, colors=colors, width=8)
 
         img_ = F.to_pil_image(result)
         attribution.take_prediction = 0

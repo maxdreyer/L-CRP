@@ -354,8 +354,6 @@ class FeatureVisualizationLocalization(FeatureVisualizationMultiTarget):
 
         target = target[..., 1].long()
         targets = np.unique(target)
-        if len(targets) == 0:
-            print(index)
         targets = np.random.permutation(targets)
         targets = [1 if (i in targets.astype(int)) else 0 for i in range(len(self.dataset.class_names))]
 

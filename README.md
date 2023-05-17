@@ -55,6 +55,10 @@ Please feel free to cite our work, if used in your research:
       <td>DeepLabV3+ (VOC 2012)</td>
       <td>YOLOv6s (COCO 2017)</td>
     </tr>
+    <tr>
+      <td></td>
+      <td>SSD (COCO 2014)</td>
+    </tr>
   </tbody>
 </table>
 
@@ -81,13 +85,15 @@ Download datasets via public available links and setup paths in corresponding da
 1. [CityScapes](https://www.cityscapes-dataset.com)
 2. [MS COCO 2017](https://cocodataset.org)
 3. [VOC 2012](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/)
+4. [MS COCO 2014](https://cocodataset.org)
 
 ### 3) Models
-The YOLOv5, YOLOv6 and DeepLabV3+ models are taken from the following repositories and adapted to our needs.
+The YOLOv5, YOLOv6, SSD and DeepLabV3+ models are taken from the following repositories and adapted to our needs.
 1. [DeepLabV3+ (ResNet50)](https://github.com/VainF/DeepLabV3Plus-Pytorch)
 2. [YOLOv5m](https://github.com/ultralytics/yolov5)
 3. [YOLOv6s](https://github.com/meituan/YOLOv6)
 4. [UNet](https://github.com/qubvel/segmentation_models.pytorch)
+5. [SSD (VGG-16)](https://github.com/lufficc/SSD)
  
 All used model checkpoints can be downloaded [**here**](https://datacloud.hhi.fraunhofer.de/s/2wK2ARSWoSSdJ6p).
 Please save checkpoints in the `models/checkpoints` directory. 

@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+from datasets.coco import coco_train, coco_test
 from datasets.coco2017 import coco2017_train, coco2017_test
 from datasets.cityscapes import cityscapes_train, cityscapes_test
 from datasets.voc2012 import voc2012_train, voc2012_test
@@ -9,6 +10,10 @@ DATASETS = {
         {"train": coco2017_train,
          "test": coco2017_test,
          "n_classes": 80},
+    "coco":
+        {"train": coco_train,
+         "test": coco_test,
+         "n_classes": 81},
     "cityscapes": 
         {"train": cityscapes_train,
          "test": cityscapes_test,
