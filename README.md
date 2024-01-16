@@ -5,7 +5,7 @@
 Rendering Local Concept-based Explanations in PyTorch</p> 
 </div>
 
-[![arXiv](https://img.shields.io/badge/arXiv-2211.11426-b31b1b.svg)](https://arxiv.org/pdf/2211.11426) 
+[![CVPRW](https://img.shields.io/badge/CVPRW_2023-paper-blue.svg)](https://openaccess.thecvf.com/content/CVPR2023W/SAIAD/papers/Dreyer_Revealing_Hidden_Context_Bias_in_Segmentation_and_Object_Detection_Through_CVPRW_2023_paper.pdf) 
 
 ## Description 
  Applying traditional post-hoc attribution methods to segmentation or object detection predictors offers only limited insights,
@@ -29,11 +29,12 @@ and where concepts are precisely located in input space.</p>
 Please feel free to cite our work, if used in your research: 
  
 ```bibtex 
-@article{dreyer2022revealing,
+@inproceedings{dreyer2023revealing,
   title={Revealing Hidden Context Bias in Segmentation and Object Detection through Concept-specific Explanations},
   author={Dreyer, Maximilian and Achtibat, Reduan and Wiegand, Thomas and Samek, Wojciech and Lapuschkin, Sebastian},
-  journal={arXiv preprint arXiv:2211.11426},
-  year={2022}
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+  pages={3828--3838},
+  year={2023}
 }
 ```
 
